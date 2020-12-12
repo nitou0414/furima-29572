@@ -28,7 +28,7 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false|
 |email|string|unique: true|
-|ncrypted_password|string|null:false|
+|encrypted_password|string|null:false|
 |first_name|string|null:false|
 |family_name|string|null:false|
 |first_name_kana|string|null:false|
@@ -37,21 +37,20 @@ Things you may want to cover:
 
 ### Association
 - has_many :items, dependent: :destroy
-- has_many :item_purchase, dependent: :destroy
+- has_many :item_purchases, dependent: :destroy
 
 ## items
 |Column|Type|Options|
 |------|----|-------|
-|photo|text|null: false|
 |name|string|null:false|
 |introduction|text|null:false|
-|category|integer|null:false|
-|status|integer|null:false|
-|shipping_charges|integer|null:false|
-|shipping_area|integer|null:false|
-|shipping_date|integer|null:false|
-|price|string|integer|
-|user|references|integer|
+|category_id|integer|null:false|
+|status_id|integer|null:false|
+|shipping_charges_id|integer|null:false|
+|shipping_area_id|integer|null:false|
+|shipping_date_id|integer|null:false|
+|price|string|null: false|
+|user|integer|references|
 
 ### Association
 - belongs_to :user
@@ -63,17 +62,16 @@ Things you may want to cover:
 - belongs_to_active_hash :shipping_area(active_hash)
 
 
-## item_purchase
+## item_purchases
 |Column|Type|Options|
 |------|----|-------|
-|product|integer|null: false, foreign_key: true|
-|user|integer|null: false, foreign_key: true|
-|purchase_info|integer|null: false, foreign_key: true|
+|product|integer|references|
+|user|integer|references|
 
 ### Association
 - belongs_to :user
 - belongs_to :items
-- belongs_to :sending_destinations
+- has_one :sending_destinations
 
 
 ## sending_destinations
@@ -85,9 +83,10 @@ Things you may want to cover:
 |address|string|null:false|
 |building_name|string||
 |phone_number|string|null:false|
+|user|integer|references|
 
 ### Association
 - has_one_active_hash :prefectures(active_hash)
-- has_one :item_purchase
+- belongs_to :item_purchase
 
 
