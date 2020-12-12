@@ -47,7 +47,6 @@ Things you may want to cover:
 |category_id|integer|null:false|
 |status_id|integer|null:false|
 |shipping_charges_id|integer|null:false|
-|shipping_area_id|integer|null:false|
 |shipping_date_id|integer|null:false|
 |price|string|integer|
 |user|references|foreign_key: true|
@@ -59,19 +58,18 @@ Things you may want to cover:
 - belongs_to_active_hash :category(active_hash)
 - belongs_to_active_hash :status(active_hash)
 - belongs_to_active_hash :shipping_charges(active_hash)
-- belongs_to_active_hash :shipping_area(active_hash)
 
 
 ## item_purchases
 |Column|Type|Options|
 |------|----|-------|
-|product|integer|references|
+|product|references|foreign_key: true|
 |user|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
 - belongs_to :items
-- has_one :sending_destinations
+- has_one :sending_destination
 
 
 ## sending_destinations
