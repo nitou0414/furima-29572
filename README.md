@@ -49,8 +49,8 @@ Things you may want to cover:
 |shipping_charges_id|integer|null:false|
 |shipping_area_id|integer|null:false|
 |shipping_date_id|integer|null:false|
-|price|string|null: false|
-|user|integer|references|
+|price|string|integer|
+|user|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -66,7 +66,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |product|integer|references|
-|user|integer|references|
+|user|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -78,12 +78,12 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |post_code|string|null:false|
-|prefectures_id|string|null:false|
+|prefecture_id|string|null:false|
 |city|string|null:false|
 |address|string|null:false|
 |building_name|string||
 |phone_number|string|null:false|
-|user|integer|references|
+|user|references|foreign_key: true|
 
 ### Association
 - has_one_active_hash :prefectures(active_hash)
