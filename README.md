@@ -25,54 +25,69 @@ Things you may want to cover:
 
 ## users
 |Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 |email|string|unique: true|
 |ncrypted_password|string|null:false|
-
-Association
-has_many :items, dependent: :destroy
-has_many :comments, dependent: :destroy
-has_one :profiles, dependent: :destroy
-has_one :cards, dependent: :destroy
-has_one :sending_destinations, dependent: :destroy
-
-## profiles
-|Column|Type|Options|
 |first_name|string|null:false|
 |family_name|string|null:false|
-|first_name kana|string|null:false|
-|family_name kana|string|null:false|
+|first_name_kana|string|null:false|
+|family_name_kana|string|null:false|
 |birth_day|date|null:false|
-|user_id|references|foreign_key: true|
 
-Association
-belongs_to :user
-
-## sending_destinations
-|Column|Type|Options|
-|user_id|references|foreign_key: true|
-|post_code|string|null:false|
-|prefectures|string|null:false|
-|municipality|string|null:false|
-|address|string|null:false|
-|building name|string||
-|phone_number|string|null:false|
-
-Association
-belongs_to: user
+### Association
+- has_many :items, dependent: :destroy
+- has_many :item_purchase, dependent: :destroy
 
 ## items
 |Column|Type|Options|
+|------|----|-------|
+|photo|text|null: false|
 |name|string|null:false|
 |introduction|text|null:false|
-|category_id|integer|null:false|
-|status_id|integer|null:false|
-|shipping charges_id|integer|null:false|
-|shipping area_id|integer|null:false|
-|shipping date_id|integer|null:false|
-|price|string|null:false|
+|category|integer|null:false|
+|status|integer|null:false|
+|shipping_charges|integer|null:false|
+|shipping_area|integer|null:false|
+|shipping_date|integer|null:false|
+|price|string|integer|
+|user|references|integer|
 
-Association
-has_many :comments, dependent: :destroy
-has_many :item_imgs, dependent: :destroy
-belongs_to :user
+### Association
+- belongs_to :user
+- has_one :item_purchase
+- belongs_to_active_hash :prefectures(active_hash)
+- belongs_to_active_hash :category(active_hash)
+- belongs_to_active_hash :status(active_hash)
+- belongs_to_active_hash :shipping_charges(active_hash)
+- belongs_to_active_hash :shipping_area(active_hash)
+
+
+## item_purchase
+|Column|Type|Options|
+|------|----|-------|
+|product|integer|null: false, foreign_key: true|
+|user|integer|null: false, foreign_key: true|
+|purchase_info|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :items
+- belongs_to :sending_destinations
+
+
+## sending_destinations
+|Column|Type|Options|
+|------|----|-------|
+|post_code|string|null:false|
+|prefectures_id|string|null:false|
+|city|string|null:false|
+|address|string|null:false|
+|building_name|string||
+|phone_number|string|null:false|
+
+### Association
+- has_one_active_hash :prefectures(active_hash)
+- has_one :item_purchase
+
+
