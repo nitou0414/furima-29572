@@ -26,8 +26,8 @@ Things you may want to cover:
 ## users
 |Column|Type|Options|
 |name|string|null: false|
-|email|string|null:false|
-|password|string|null:false|
+|email|string|unique: true|
+|ncrypted_password|string|null:false|
 
 Association
 has_many :items, dependent: :destroy
@@ -48,16 +48,6 @@ has_one :sending_destinations, dependent: :destroy
 Association
 belongs_to :user
 
-## cards
-|Column|Type|Options|
-|user_id|references|foreign_key: true|
-|card_number|string|null:false|
-|expiration|string|null:false|
-|code_number|string|null:false|
-
-Association
-belongs_to :user
-
 ## sending_destinations
 |Column|Type|Options|
 |user_id|references|foreign_key: true|
@@ -65,42 +55,24 @@ belongs_to :user
 |prefectures|string|null:false|
 |municipality|string|null:false|
 |address|string|null:false|
-|building name|string|null:false|
+|building name|string||
 |phone_number|string|null:false|
 
 Association
 belongs_to: user
 
-## comments
-|Column|Type|Options|
-|comment|text|null:false|
-|user_id|references|foreign_key: true|
-|item_id|references|foreign_key: true|
-
-Association
-belongs_to :user
-belongs_to :item
-
 ## items
 |Column|Type|Options|
 |name|string|null:false|
 |introduction|text|null:false|
-|categories|string|null:false|
-|status|string|null:false|
-|shipping charges|string|null:false|
-|shipping area|string|null:false|
-|shipping date|string|null:false|
+|category_id|integer|null:false|
+|status_id|integer|null:false|
+|shipping charges_id|integer|null:false|
+|shipping area_id|integer|null:false|
+|shipping date_id|integer|null:false|
 |price|string|null:false|
 
 Association
 has_many :comments, dependent: :destroy
 has_many :item_imgs, dependent: :destroy
 belongs_to :user
-
-## item_imgs
-|Column|Type|Options|
-|img|string|null:false|
-|item_id|references|foreign_key: true|
-
-Association
-belongs_to :item
