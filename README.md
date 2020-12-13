@@ -22,3 +22,70 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## users
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|unique: true|
+|encrypted_password|string|null:false|
+|first_name|string|null:false|
+|family_name|string|null:false|
+|first_name_kana|string|null:false|
+|family_name_kana|string|null:false|
+|birth_day|date|null:false|
+
+### Association
+- has_many :items, dependent: :destroy
+- has_many :item_purchases, dependent: :destroy
+
+## items
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+|explanation|text|null:false|
+|category_id|integer|null:false|
+|status_id|integer|null:false|
+|shipping_charges_id|integer|null:false|
+|prefecture_id|integer|null: false|
+|shipping_date_id|integer|null:false|
+|price|integer|null:false|
+|user|references|foreign_key: true|
+
+### Association
+- belongs_to :user
+- has_one :item_purchase
+- belongs_to_active_hash :prefecture_id(active_hash)
+- belongs_to_active_hash :category_id(active_hash)
+- belongs_to_active_hash :condition_id(active_hash)
+- belongs_to_active_hash :shipping_charges_id(active_hash)
+- belongs_to_active_hash :shipping_date_id(active_hash)
+
+## item_purchases
+|Column|Type|Options|
+|------|----|-------|
+|item|references|foreign_key: true|
+|user|references|foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :sending_destination
+
+
+## sending_destinations
+|Column|Type|Options|
+|------|----|-------|
+|item_purchase|references|null: false, foreign_key: true|
+|post_code|string|null:false|
+|prefecture_id|integer|null: false|
+|city|string|null:false|
+|address|string|null:false|
+|building_name|string||
+|phone_number|string|null:false|
+
+### Association
+- has_one_active_hash :prefecture_id(active_hash)
+- belongs_to :item_purchase
+
+
