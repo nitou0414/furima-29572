@@ -82,6 +82,8 @@ Things you may want to cover:
 |building_name|string||
 |phone_number|string|null:false|
 |user|references|foreign_key: true|
+|prefecture_id|references|foreign_key: true|
+
 
 ### Association
 - has_one_active_hash :prefectures(active_hash)
