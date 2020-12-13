@@ -67,11 +67,10 @@ Things you may want to cover:
 |------|----|-------|
 |product|references|foreign_key: true|
 |user|references|foreign_key: true|
-|sending_destinations|integer|foreign_key: true|
 
 ### Association
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one :sending_destination
 
 
@@ -80,7 +79,7 @@ Things you may want to cover:
 |------|----|-------|
 |item_purchase|integer|null: false, foreign_key: true|
 |post_code|string|null:false|
-|prefecture_id|references|foreign_key: true|
+|prefecture_id|integer|null: false|
 |city|string|null:false|
 |address|string|null:false|
 |building_name|string||
