@@ -42,7 +42,6 @@ Things you may want to cover:
 ## items
 |Column|Type|Options|
 |------|----|-------|
-|photo|text|null:false|
 |name|string|null:false|
 |explanation|text|null:false|
 |category_id|integer|null:false|
@@ -65,7 +64,7 @@ Things you may want to cover:
 ## item_purchases
 |Column|Type|Options|
 |------|----|-------|
-|product|references|foreign_key: true|
+|item|references|foreign_key: true|
 |user|references|foreign_key: true|
 
 ### Association
@@ -77,7 +76,7 @@ Things you may want to cover:
 ## sending_destinations
 |Column|Type|Options|
 |------|----|-------|
-|item_purchase|integer|null: false, foreign_key: true|
+|item_purchase|references|null: false, foreign_key: true|
 |post_code|string|null:false|
 |prefecture_id|integer|null: false|
 |city|string|null:false|
