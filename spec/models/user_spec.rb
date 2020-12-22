@@ -52,8 +52,8 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
     it 'パスワードは確認用を含めて2回入力すること' do
-      @user.password = 'aaaaaaa'
-      @user.password_confirmation = 'bbbbbb'
+      @user.password = 'aaaa111'
+      @user.password_confirmation = 'bbbb111'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
@@ -102,6 +102,16 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birth day can't be blank")
     end
+    it "family_nameが半角英語だと保存できない" do
+      @user.family_name = 'aaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name is invalid")
+    end
+    it "first_nameが半角英語だと保存できない" do
+      @user.first_name = 'aaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
     end
   end
+end
 end
