@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
        expect(@user.errors.full_messages).to include("Email can't be blank")
     end
     it "emailに@が含まれていない" do
-      @user.email = ''
+      @user.email = 'testemail.com'
       @user.valid?
       expect(@user.errors.full_messages).to include("Email is invalid")
     end
