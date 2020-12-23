@@ -21,5 +21,5 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, {presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }}
   VALID_PASSWORD_REGIX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, format: { with: VALID_PASSWORD_REGIX }
+  validates :password, format: { with: VALID_PASSWORD_REGIX ,message:  "is invalid"}  
 end

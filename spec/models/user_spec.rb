@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
       it "nameとemail、passwordとpassword_confirmation,family_name,first_name,family_name_kana,first_name_kana,birth_dayが存在すれば登録できる" do
-        # expect(@user).to be_valid
         expect(@user.valid?).to eq true
       end
     end
@@ -112,6 +111,18 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name is invalid")
     end
+      it "passwordが半角数字のみだと登録できない" do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it "passwordが全角英数混合だと登録できない" do
+        @user.password = 'ＡＡＡＡＡ１１'
+        @user.password_confirmation = 'ＡＡＡＡＡ１１'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+    end
   end
-end
 end
