@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :category_id
     validates :status_id
-    validates :shipping_charges_id
+    validates :shipping_charge_id
     validates :prefecture_id
     validates :shipping_date_id
     validates :image
