@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   end
   validates :name, presence:true, length:{maximum:40}
   validates :explanation, presence:true, length:{maximum:1000}
-  validates :price, presence:true, numericality: {greater_than_or_equal_to: 300}
+  validates :price, presence:true, numericality: {greater_than_or_equal_to: 300} ,numericality: {less_than:10000000}
   VALID_PRICE_REGEX = /\A[0-9]+\z/
   validates :price, presence: true, format: { with: VALID_PRICE_REGEX }
 
