@@ -20,22 +20,22 @@ class ItemsController < ApplicationController
     end
   end
 
- def edit
- end
+#  def edit
+#  end
 
- def show
- end
+#  def show
+#  end
 
- def destroy
-  @items = Item.find(params[:id])
-    @items.destroy
-    redirect_to root_path
-end
+#  def destroy
+#   @items = Item.find(params[:id])
+#     @items.destroy
+#     redirect_to root_path
+# end
 
- def update
-   @item.update(item_params)
-   redirect_to root_path
- end
+#  def update
+#    @item.update(item_params)
+#    redirect_to root_path
+#  end
 
  def set_item
   @item = Item.find(params[:id])
