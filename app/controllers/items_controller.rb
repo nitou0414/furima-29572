@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if user_signed_in?
+    else
+  end
   end
 
   def show
