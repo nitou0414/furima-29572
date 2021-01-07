@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   #authenticate_user!=ログインしていなかったら
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, except: [:index, :show]
   #set_〇〇=まとめる
   before_action :set_item, only: [:edit, :show, :update]
+  #only=全て
+  #except=それ以外
 
   def index
     @items = Item.all.order('id DESC')
