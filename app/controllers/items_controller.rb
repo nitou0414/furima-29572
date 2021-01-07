@@ -24,7 +24,9 @@ class ItemsController < ApplicationController
 
   def edit
     if user_signed_in?
+    if current_user.id == @item.user_id 
     else
+  end
   end
   end
 
