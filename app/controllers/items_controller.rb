@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   #authenticate_user!=ログインしていなかったら
   before_action :authenticate_user!, except: [:index, :show]
   #set_〇〇=まとめる
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
   #only=全て
   #except=それ以外
 
@@ -42,9 +42,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-  #  @items = Item.find(params[:id])
-  #   @items.destroy
-  #   redirect_to root_path
+    if current_user.id == @item.user_id
+    @item.destroy
+    redirect_to root_path
+    else
+     render :edit
+    end
   end
 
   private
