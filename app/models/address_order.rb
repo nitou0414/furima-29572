@@ -22,8 +22,8 @@ class AddressOrder
     #購入情報の保存
     item_purchase= ItemPurchase.create(user_id: user_id, item_id: item_id)
     #住所情報の保存
-    sending_destination= SendingDestination.create(item_purchase_id: item_purchase_id, post_code: post_code, prefecture_id: prefecture_id,
+    sending_destination= SendingDestination.create(item_purchase_id: item_purchase.id, post_code: post_code, prefecture_id: prefecture_id,
     city:city, address:address, building_name:building_name, phone_number:phone_number)
-    
+    binding.pry
    end
 end
