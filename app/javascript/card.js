@@ -21,7 +21,6 @@ const pay = () => {
         const tokenObj = `<input value=${token} name='token'type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      else
       
       
       document.getElementById("card-number").removeAttribute("name");
