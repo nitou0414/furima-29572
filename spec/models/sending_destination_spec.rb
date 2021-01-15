@@ -13,6 +13,9 @@ RSpec.describe AddressOrder, type: :model do
       it "item_purchase_id,post_code,prefecture_id,city,address,phone_number,token,item_id,user_idが存在すれば登録できる" do
         expect(@address_order.valid?).to eq true
       end
+      it "building_nameが空でも登録できる" do
+        expect(@address_order.valid?).to eq true
+      end
     end
 
   context '商品登録がうまくいかないとき' do
@@ -28,6 +31,11 @@ RSpec.describe AddressOrder, type: :model do
       end
     it "prefecture_idが空だと登録できない" do
       @address_order.prefecture_id = ''
+      @address_order.valid?
+      expect(@address_order.errors.full_messages).to include("Prefecture can't be blank")
+      end
+    it "prefecture_idが選択されていない状態「---」では登録できない" do
+      @address_order.prefecture_id = nil
       @address_order.valid?
       expect(@address_order.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -48,6 +56,11 @@ RSpec.describe AddressOrder, type: :model do
       end
     it "phone_numberにはハイフンは不要で、11桁以内でないと登録できない" do
       @address_order.phone_number = nil
+      @address_order.valid?
+      expect(@address_order.errors.full_messages).to include("Phone number is invalid")
+      end
+    it "phone_numberは英数混合では登録できない" do
+      @address_order.phone_number = 'abc11111111'
       @address_order.valid?
       expect(@address_order.errors.full_messages).to include("Phone number is invalid")
       end

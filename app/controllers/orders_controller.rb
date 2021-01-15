@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   def index
     if @item.item_purchase.present?
       redirect_to root_path
+    else
+      redirect_to root_path
     end
     @address_order = AddressOrder.new
   end
