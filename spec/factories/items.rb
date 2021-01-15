@@ -4,7 +4,7 @@ FactoryBot.define do
     explanation          {"説明"}
     category_id          {1}
     status_id            {1}
-    shipping_charges_id  {1}
+    shipping_charge_id   {1}
     prefecture_id        {1}
     shipping_date_id     {1}
     price                {1111}
